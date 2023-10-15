@@ -1,18 +1,20 @@
 <script setup>
     
-    import { ref } from 'vue';
+    import { onMounted, ref } from 'vue';
     import { useRoute } from 'vue-router';
+
+    import axiosClient from '../axiosClient';
 
     const route = useRoute();
     const meal = ref({});
 
-    onMounted(async () => {
-  try {
-    const response = await axiosClient.get(`lookup.php?i=${route.params.id}`);
-    meal.value = response.data.meals[0];
-  } catch (error) {
-    console.error('Error fetching meal details:', error);
-  }
+    
+    onMounted(() => {
+        axiosClient.get(`lookup.php?i=${route.params.id}`)
+            .then (({data})=>{
+                debugger;
+                meal.value = data
+        })
 });
 
 </script>
