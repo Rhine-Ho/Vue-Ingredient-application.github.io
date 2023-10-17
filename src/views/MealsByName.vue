@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue';// 引入Vue 3相關的功能
 import store from '../stores';// 引入存儲庫（store）
+import YoutuButton from '../components/YoutuButton.vue';
 
 const keyword = ref('');// 創建一個可響應的參考（ref）用於存儲搜尋關鍵字
 const meals = computed(() => store.state.searchedMeals); // 使用computed來從存儲庫中獲取餐點資料
@@ -24,7 +25,7 @@ watch(() => store.state.searchedMeals, () => {
       class="rounded border-2 border-gray-200 w-full"
       placeholder="Search for Meals"
       @change="searchMeals"
-    />  // 當輸入框的值變化時觸發searchMeals函數
+    />  <!--當輸入框的值變化時觸發searchMeals函數-->
   </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 p-6">
   <div v-for="meal of meals" :key="meal.idMeal" class="bg-white shadow rounded-xl">
@@ -35,11 +36,11 @@ watch(() => store.state.searchedMeals, () => {
 
       <div class="p-3">
         <h3 class="font-bold">
-        {{ meal.strMeal }}</h3>// 顯示餐點名稱
+        {{ meal.strMeal }}</h3><!-- 顯示餐點名稱-->
       <!--<pre>{{ meals }}</pre>-->
         <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat est dignissimos numquam tempore consequuntur a aperiam, quibusdam eaque temporibus quod soluta nesciunt odit nobis, expedita tenetur unde porro aut nihil.</p>
       <div class="flex items-center justify-between">
-        <a :href="meal.strYoutube" target="_blank" class="px-3 py-2 text-white rounded-lg border-2 shadow-md bg-red-500 hover:bg-red-600 transition-colors">YouTube</a>
+        <YoutuButton :href="meal.strYoutube"/>
         <RouterLink :to="{ name: 'mealDetail', params: {id:meal.idMeal}}" class="px-3 py-2 rounded-lg border-2  bg-slate-200 hover:bg-slate-50  shadow-sm hover:shadow-slate-600    transition-colors">
           View
         </RouterLink>
