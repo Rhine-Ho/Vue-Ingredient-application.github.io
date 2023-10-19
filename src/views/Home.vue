@@ -3,7 +3,6 @@ import { computed, onMounted, ref } from 'vue'; // 引入Vue 3的相關功能
 import store from '../stores'; // 引入存儲庫（store）
 import axiosClient from '../axiosClient'; // 引入用於發送HTTP請求的客戶端
 
-const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); // 創建包含英文字母的字母陣列
 const ingredients = ref([]); // 創建一個可響應的參考（ref），用於存儲API回應中的食材資訊
 
 onMounted(async () => {
@@ -17,13 +16,13 @@ onMounted(async () => {
   <div class="flex flex-col p-8 justify-center">
     <div class="flex justify-center gap-1 mt-2">
       <!-- 使用v-for指令生成字母按鈕，每個按鈕對應不同的路由參數 -->
-      <router-link
+      <RouterLink
         :to="{ name: 'byLetter', params: { letter } }"
         v-for="letter of letters"
         :key="letter"
       >
         {{ letter }}
-      </router-link>
+      </RouterLink>
     </div>
   </div>
 </template>
