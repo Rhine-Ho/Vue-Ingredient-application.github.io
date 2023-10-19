@@ -1,4 +1,5 @@
 <script setup>
+    import YoutuButton from '../components/YoutuButton.vue';
     
     import { onMounted, ref } from 'vue';
     import { useRoute } from 'vue-router';
@@ -23,9 +24,9 @@
 </script>
 
 <template>
-    <div class="w-[800px] mx-auto p-8">
+    <div class="max-w-[800px] mx-auto p-8">
         <h1 class="text-5x1 font-bold mb-5">{{ meal.strMeal }}</h1>
-        <img :src="meal.strMealThumb" :alt="meal.strMeal">
+        <img :src="meal.strMealThumb" :alt="meal.strMeal" class="max-w-[100%]">
         <div class="grid grid-cols-1 sm:grid-cols-3 text-lg py-2">
             <div>
                 <strong class="font-bold">Category:</strong>{{ meal.strCategory }}
@@ -57,6 +58,16 @@
                             </li>
                             </template>
                         </ul>
+                    </div>
+                    <div class="mt-4">
+                        <YoutuButton :href="meal.strYoutube">Youtube</YoutuButton>
+                        <a 
+                            :href="meal.strSource" 
+                            target="_blank" 
+                            class="px-3 py-2 text-indigo-600  rounded-lg border-2 hover:bg-indigo-400 hover:text-white transition-colors"
+                        >
+                           View original Source
+                        </a>
                     </div>
                 </div>
     
